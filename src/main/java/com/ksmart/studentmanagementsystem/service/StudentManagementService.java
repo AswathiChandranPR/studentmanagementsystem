@@ -80,6 +80,13 @@ public class StudentManagementService {
 
     public void deleteStudent(String  code) {
 
+      Student stud =  studentManagementRepository.findByStudentCode(code);
+        if(stud==null) {
+
+            throw new StudentCodeNotFoundException(code);
+        }
+
+
         studentManagementRepository.delete(studentManagementRepository.findByStudentCode(code));
 
 
